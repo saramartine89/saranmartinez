@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.google.ads.googleads.annotations.impl.generators;
+package com.google.ads.googleads.annotations.impl.generators.messageproxy;
 
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.TypeSpec;
@@ -20,10 +20,10 @@ import java.util.Set;
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.Messager;
 
-/** Generates an implementation of FeedMessageProxy. */
-public class FeedMessageProxyGenerator extends AbstractMessageProxyGenerator {
+/** Generates an implementation of CustomerUserAccessMessageProxy. */
+public class CustomerUserAccessProxyGenerator extends AbstractMessageProxyGenerator {
 
-  public FeedMessageProxyGenerator(Set<Integer> versions, Messager messager, Filer filer) {
+  public CustomerUserAccessProxyGenerator(Set<Integer> versions, Messager messager, Filer filer) {
     super(versions, messager, filer);
   }
 
@@ -32,26 +32,15 @@ public class FeedMessageProxyGenerator extends AbstractMessageProxyGenerator {
       TypeSpec.Builder typeBuilder,
       int version,
       ClassName proxiedClassName,
-      ClassName proxiedBuilderClassName) {
-    generateStringSetter(
-        typeBuilder,
-        proxiedBuilderClassName,
-        "setPlacesLocationFeedDataEmailAddressIfPresent",
-        "builder.hasPlacesLocationFeedData()"
-            + " && builder.getPlacesLocationFeedData().hasEmailAddress()",
-        "builder.getPlacesLocationFeedDataBuilder().setEmailAddress(toSet)",
-        version,
-        1,
-        6);
-  }
+      ClassName proxiedBuilderClassName) {}
 
   @Override
   protected ClassName getProxyInterfaceRawName() {
-    return ClassName.get(MESSAGE_PROXY_PACKAGE_NAME, "FeedMessageProxy");
+    return null;
   }
 
   @Override
   protected ClassName getProxiedClassName(int version) {
-    return ClassName.get(getResourcesPackage(version), "Feed");
+    return null;
   }
 }
